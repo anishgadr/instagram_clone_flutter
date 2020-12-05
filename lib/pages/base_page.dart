@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:insta_clone/pages/home_page.dart';
+import 'package:insta_clone/pages/search_page.dart';
 import 'package:insta_clone/theme/colors.dart';
 
 class BaseApp extends StatefulWidget {
@@ -16,13 +18,14 @@ class _BaseAppState extends State<BaseApp> {
       appBar: getAppBar(),
       backgroundColor: black,
       bottomNavigationBar: getFooter(),
+      body: getBody(),
     );
   }
 
   Widget getBody() {
     List<Widget> pages = [
-      // HomePage(),
-      // SearchPage(),
+      HomePage(),
+      SearchPage(),
       Center(
         child: Text(
           "Upload Page",
@@ -54,22 +57,30 @@ class _BaseAppState extends State<BaseApp> {
   Widget getAppBar() {
     if (pageIndex == 0) {
       return AppBar(
-        backgroundColor: appBarColor,
+        backgroundColor: primary,
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SvgPicture.asset(
-              "assets/images/camera_icon.svg",
-              width: 30,
-            ),
             Text(
               "Instagram",
               style: TextStyle(fontFamily: 'Billabong', fontSize: 35),
             ),
-            SvgPicture.asset(
-              "assets/images/message_icon.svg",
-              width: 30,
-            ),
+            Row(
+              children: [
+                SvgPicture.asset(
+                  "assets/images/search_icon.svg",
+                  width: 25,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                SvgPicture.asset(
+                  "assets/images/message_icon.svg",
+                  width: 25,
+                ),
+              ],
+            )
           ],
         ),
       );
@@ -77,17 +88,17 @@ class _BaseAppState extends State<BaseApp> {
       return null;
     } else if (pageIndex == 2) {
       return AppBar(
-        backgroundColor: appBarColor,
+        backgroundColor: primary,
         title: Text("Upload"),
       );
     } else if (pageIndex == 3) {
       return AppBar(
-        backgroundColor: appBarColor,
+        backgroundColor: primary,
         title: Text("Activity"),
       );
     } else {
       return AppBar(
-        backgroundColor: appBarColor,
+        backgroundColor: primary,
         title: Text("Account"),
       );
     }
@@ -112,7 +123,9 @@ class _BaseAppState extends State<BaseApp> {
     return Container(
       width: double.infinity,
       height: 60,
-      decoration: BoxDecoration(color: appFooterColor),
+      decoration: BoxDecoration(
+          color: primary,
+          border: Border(top: BorderSide(color: Colors.grey, width: 0.2))),
       child: Padding(
         padding:
             const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 15),
@@ -125,7 +138,7 @@ class _BaseAppState extends State<BaseApp> {
                 },
                 child: SvgPicture.asset(
                   bottomItems[index],
-                  width: 27,
+                  width: 25,
                 ));
           }),
         ),

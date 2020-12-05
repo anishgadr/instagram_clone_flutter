@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:insta_clone/pages/base_page.dart';
-import 'package:insta_clone/theme/colors.dart';
 
 void main() {
   runApp(MyApp());
